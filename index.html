@@ -11,108 +11,196 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ===== VARIÁVEIS DE DESIGN ===== */
         :root {
-            --primary: #ff0000;
+            /* Cores */
+            --primary: #FF6B00;
+            --primary-light: #FF8C33;
             --primary-dark: #E05D00;
-            --secondary: #4CAF50;
-            --dark: #333333;
+            --secondary: #FFD700;
+            --dark: #2C2C2C;
             --light: #FFFFFF;
             --gray: #F5F5F5;
             --light-gray: #EEEEEE;
-            --danger: #F44336;
-            --success: #4CAF50;
-            --warning: #FF9800;
-            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            --border-radius: 8px;
+            --danger: #FF3B30;
+            --success: #34C759;
+            --warning: #FF9500;
+            
+            /* Espaçamentos */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            
+            /* Bordas */
+            --border-radius-sm: 4px;
+            --border-radius-md: 8px;
+            --border-radius-lg: 16px;
+            --border-radius-circle: 50%;
+            
+            /* Sombras */
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+            
+            /* Transições */
+            --transition-fast: 0.2s ease;
+            --transition-normal: 0.3s ease;
+            --transition-slow: 0.5s ease;
+            
+            /* Tipografia */
+            --font-size-xs: 12px;
+            --font-size-sm: 14px;
+            --font-size-md: 16px;
+            --font-size-lg: 18px;
+            --font-size-xl: 24px;
+            --font-size-xxl: 32px;
+            
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-bold: 700;
         }
 
+        /* ===== RESET E BASE ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
         }
 
         body {
+            font-family: 'Roboto', sans-serif;
             background-color: var(--gray);
             color: var(--dark);
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: var(--font-weight-bold);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        button, input, select, textarea {
+            font-family: inherit;
+            font-size: inherit;
         }
 
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 var(--space-md);
         }
 
+        /* ===== ANIMAÇÕES ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* ===== COMPONENTES ===== */
         /* Top Bar */
         .top-bar {
             background-color: var(--dark);
             color: var(--light);
-            padding: 8px 0;
-            font-size: 14px;
+            padding: var(--space-sm) 0;
+            font-size: var(--font-size-sm);
+            position: relative;
+            z-index: 100;
         }
 
-        .top-bar .container {
+        .top-bar-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
+            gap: var(--space-md);
         }
 
-        .top-info {
+        .contact-info {
             display: flex;
-            gap: 15px;
+            gap: var(--space-lg);
             flex-wrap: wrap;
         }
 
-        .top-info span {
+        .contact-info span {
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: var(--space-xs);
         }
 
-        .top-info i {
+        .contact-info i {
             color: var(--primary);
         }
 
         .social-links {
             display: flex;
-            gap: 10px;
+            gap: var(--space-md);
         }
 
         .social-links a {
             color: var(--light);
-            font-size: 16px;
-            transition: color 0.3s;
+            transition: color var(--transition-fast);
         }
 
         .social-links a:hover {
             color: var(--primary);
+            transform: translateY(-2px);
         }
 
         /* Header */
         .header {
             background-color: var(--light);
-            padding: 15px 0;
-            box-shadow: var(--shadow);
+            padding: var(--space-md) 0;
+            box-shadow: var(--shadow-sm);
             position: sticky;
             top: 0;
-            z-index: 100;
-            transition: all 0.3s;
+            z-index: 99;
+            transition: all var(--transition-normal);
         }
 
         .header.scrolled {
-            padding: 10px 0;
+            padding: var(--space-sm) 0;
+            box-shadow: var(--shadow-md);
         }
 
-        .header .container {
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: var(--space-md);
+        }
+
+        .logo {
+            transition: transform var(--transition-normal);
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         .logo img {
@@ -123,152 +211,168 @@
         .header-info {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: var(--space-lg);
         }
 
         .opening-hours {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: var(--space-sm);
         }
 
         .opening-hours i {
-            font-size: 24px;
+            font-size: var(--font-size-xl);
             color: var(--primary);
         }
 
-        .opening-hours p {
+        .opening-hours-text p {
             margin: 0;
-            font-size: 14px;
+            font-size: var(--font-size-sm);
         }
 
         #status {
-            font-weight: 700;
-            font-size: 15px;
+            font-weight: var(--font-weight-bold);
+            color: var(--success);
+        }
+
+        #status.fechado {
+            color: var(--danger);
         }
 
         #aviso-fechado {
             color: var(--danger);
-            font-size: 14px;
-            margin-top: 5px;
+            font-size: var(--font-size-sm);
+            margin-top: var(--space-xs);
             display: none;
-        }
-
-        .hidden {
-            display: none !important;
+            animation: fadeIn var(--transition-normal);
         }
 
         .cart-icon {
             position: relative;
             cursor: pointer;
-            font-size: 24px;
+            font-size: var(--font-size-xl);
             color: var(--dark);
-            transition: all 0.3s;
+            transition: all var(--transition-fast);
         }
 
         .cart-icon:hover {
             color: var(--primary);
+            transform: translateY(-2px);
         }
 
         .cart-count {
             position: absolute;
-            top: -10px;
-            right: -10px;
+            top: -8px;
+            right: -8px;
             background-color: var(--primary);
-            color: white;
-            border-radius: 50%;
+            color: var(--light);
+            border-radius: var(--border-radius-circle);
             width: 20px;
             height: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
-            font-weight: bold;
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-bold);
+            transition: all var(--transition-fast);
         }
 
-        .animate {
-            animation: bounce 0.5s;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+        .cart-icon:hover .cart-count {
+            background-color: var(--primary-dark);
+            transform: scale(1.1);
         }
 
         /* Main Content */
-        main {
-            padding: 30px 0;
+        .main-content {
+            padding: var(--space-xl) 0;
+            animation: fadeIn var(--transition-slow);
         }
 
         .category-filter {
             display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-xl);
             flex-wrap: wrap;
         }
 
         .category-btn {
             background-color: var(--light);
-            border: 1px solid #DDD;
-            padding: 8px 20px;
-            border-radius: 30px;
+            border: 1px solid var(--light-gray);
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: var(--border-radius-lg);
             cursor: pointer;
-            transition: all 0.3s;
-            font-weight: 500;
-            font-size: 15px;
+            transition: all var(--transition-normal);
+            font-weight: var(--font-weight-medium);
+            font-size: var(--font-size-sm);
+            color: var(--dark);
         }
 
         .category-btn:hover {
             background-color: var(--light-gray);
+            transform: translateY(-2px);
         }
 
         .category-btn.active {
             background-color: var(--primary);
             color: var(--light);
             border-color: var(--primary);
+            box-shadow: var(--shadow-sm);
         }
 
         .menu-section {
-            margin-bottom: 50px;
+            margin-bottom: var(--space-xl);
+        }
+
+        .section-header {
+            margin-bottom: var(--space-lg);
+            text-align: center;
         }
 
         .section-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 5px;
+            font-size: var(--font-size-xxl);
             color: var(--dark);
+            margin-bottom: var(--space-xs);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: var(--border-radius-lg);
         }
 
         .section-subtitle {
             color: #666;
-            margin-bottom: 30px;
-            font-size: 16px;
+            font-size: var(--font-size-md);
         }
 
         .menu-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
+            gap: var(--space-lg);
         }
 
         .menu-item {
             background-color: var(--light);
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius-md);
             overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-normal);
             display: block;
             animation: fadeIn 0.5s ease forwards;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            position: relative;
         }
 
         .menu-item:hover {
             transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
         }
 
         .item-image {
@@ -281,7 +385,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s;
+            transition: transform var(--transition-slow);
         }
 
         .menu-item:hover .item-image img {
@@ -290,31 +394,32 @@
 
         .item-badge {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: var(--space-sm);
+            right: var(--space-sm);
             background-color: var(--primary);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
+            color: var(--light);
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--border-radius-lg);
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-bold);
+            z-index: 1;
+            animation: pulse 2s infinite;
         }
 
         .item-info {
-            padding: 15px;
+            padding: var(--space-md);
         }
 
         .item-info h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            margin-bottom: 8px;
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-xs);
             color: var(--dark);
         }
 
         .item-description {
             color: #666;
-            font-size: 14px;
-            margin-bottom: 15px;
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--space-md);
             min-height: 40px;
         }
 
@@ -325,33 +430,35 @@
         }
 
         .item-price {
-            font-weight: 700;
-            font-size: 18px;
+            font-weight: var(--font-weight-bold);
+            font-size: var(--font-size-lg);
             color: var(--primary);
         }
 
         .btn-add-cart {
             background-color: var(--primary);
-            color: white;
+            color: var(--light);
             border: none;
-            padding: 8px 15px;
-            border-radius: var(--border-radius);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--border-radius-md);
             cursor: pointer;
-            font-weight: 500;
-            transition: background-color 0.3s;
+            font-weight: var(--font-weight-medium);
+            transition: all var(--transition-normal);
             display: flex;
             align-items: center;
-            gap: 5px;
-            font-size: 14px;
+            gap: var(--space-xs);
+            font-size: var(--font-size-sm);
         }
 
         .btn-add-cart:hover {
             background-color: var(--primary-dark);
+            transform: translateY(-2px);
         }
 
         .btn-add-cart:disabled {
             background-color: #CCC;
             cursor: not-allowed;
+            transform: none;
         }
 
         /* Cart Modal */
@@ -364,16 +471,18 @@
             height: 100vh;
             background-color: var(--light);
             z-index: 1000;
-            transition: right 0.3s ease;
+            transition: right var(--transition-normal);
             overflow-y: auto;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
         }
 
         .cart-modal.active {
             right: 0;
+            animation: slideInRight var(--transition-normal);
         }
 
         .cart-container {
-            padding: 20px;
+            padding: var(--space-lg);
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -383,40 +492,40 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #EEE;
+            margin-bottom: var(--space-md);
+            padding-bottom: var(--space-md);
+            border-bottom: 1px solid var(--light-gray);
         }
 
         .cart-header h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 22px;
+            font-size: var(--font-size-xl);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: var(--space-sm);
         }
 
-        .cart-header h3 i {
+        .cart-header i {
             color: var(--primary);
         }
 
         .close-cart {
             background: none;
             border: none;
-            font-size: 28px;
+            font-size: var(--font-size-xl);
             cursor: pointer;
             color: #666;
-            transition: color 0.3s;
+            transition: color var(--transition-fast);
         }
 
         .close-cart:hover {
             color: var(--danger);
+            transform: rotate(90deg);
         }
 
         .cart-body {
             flex: 1;
             overflow-y: auto;
-            margin-bottom: 20px;
+            margin-bottom: var(--space-md);
         }
 
         .empty-cart {
@@ -426,30 +535,36 @@
             justify-content: center;
             height: 200px;
             color: #666;
+            text-align: center;
         }
 
         .empty-cart i {
             font-size: 40px;
-            margin-bottom: 15px;
+            margin-bottom: var(--space-md);
             color: #DDD;
+        }
+
+        .empty-cart p {
+            font-size: var(--font-size-md);
         }
 
         .cart-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #EEE;
+            padding: var(--space-sm) 0;
+            border-bottom: 1px solid var(--light-gray);
+            animation: fadeIn var(--transition-fast);
         }
 
         .cart-item-name {
             flex: 1;
-            font-size: 15px;
+            font-size: var(--font-size-md);
         }
 
         .cart-item-price {
-            font-weight: 500;
-            margin: 0 15px;
+            font-weight: var(--font-weight-medium);
+            margin: 0 var(--space-md);
             min-width: 80px;
             text-align: right;
         }
@@ -458,60 +573,70 @@
             background: none;
             border: none;
             color: var(--danger);
-            font-size: 20px;
+            font-size: var(--font-size-lg);
             cursor: pointer;
             width: 25px;
             height: 25px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            transition: background-color 0.3s;
+            border-radius: var(--border-radius-circle);
+            transition: background-color var(--transition-fast);
         }
 
         .cart-item-remove:hover {
             background-color: rgba(244, 67, 54, 0.1);
+            transform: scale(1.1);
         }
 
         .customer-info {
-            margin-bottom: 20px;
-            padding: 15px;
+            margin-bottom: var(--space-md);
+            padding: var(--space-md);
             background-color: var(--light-gray);
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius-md);
         }
 
         .customer-info h4 {
-            font-family: 'Poppins', sans-serif;
-            margin-bottom: 15px;
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-md);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: var(--space-sm);
         }
 
-        .customer-info h4 i {
+        .customer-info i {
             color: var(--primary);
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: var(--space-md);
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-            font-size: 14px;
+            margin-bottom: var(--space-xs);
+            font-weight: var(--font-weight-medium);
+            font-size: var(--font-size-sm);
         }
 
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 10px;
+            padding: var(--space-sm);
             border: 1px solid #DDD;
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius-sm);
             font-family: inherit;
-            font-size: 14px;
+            font-size: var(--font-size-sm);
+            transition: border-color var(--transition-fast);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.2);
         }
 
         .form-group textarea {
@@ -521,57 +646,58 @@
 
         .payment-options {
             display: flex;
-            gap: 15px;
-            margin-top: 5px;
+            gap: var(--space-md);
+            margin-top: var(--space-xs);
+            flex-wrap: wrap;
         }
 
         .payment-options label {
             display: flex;
             align-items: center;
-            gap: 5px;
-            font-weight: normal;
+            gap: var(--space-xs);
+            font-weight: var(--font-weight-normal);
             cursor: pointer;
-            font-size: 14px;
+            font-size: var(--font-size-sm);
         }
 
         .cart-summary {
-            margin-bottom: 20px;
-            padding: 15px;
+            margin-bottom: var(--space-md);
+            padding: var(--space-md);
             background-color: var(--light-gray);
-            border-radius: var(--border-radius);
+            border-radius: var(--border-radius-md);
         }
 
         .summary-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 10px;
+            margin-bottom: var(--space-sm);
         }
 
         .summary-row.total {
-            font-weight: bold;
-            font-size: 18px;
-            margin-top: 10px;
-            padding-top: 10px;
+            font-weight: var(--font-weight-bold);
+            font-size: var(--font-size-lg);
+            margin-top: var(--space-md);
+            padding-top: var(--space-md);
             border-top: 1px solid #DDD;
         }
 
         .cart-footer {
             display: flex;
-            gap: 10px;
+            gap: var(--space-sm);
         }
 
         .btn {
             flex: 1;
-            padding: 12px;
-            border-radius: var(--border-radius);
-            font-weight: 500;
+            padding: var(--space-md);
+            border-radius: var(--border-radius-md);
+            font-weight: var(--font-weight-medium);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all var(--transition-normal);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            font-size: 15px;
+            gap: var(--space-sm);
+            font-size: var(--font-size-md);
         }
 
         .btn-clear {
@@ -582,6 +708,7 @@
 
         .btn-clear:hover {
             background-color: #EEE;
+            transform: translateY(-2px);
         }
 
         .btn-checkout {
@@ -591,12 +718,16 @@
         }
 
         .btn-checkout:hover {
-            background-color: #43A047;
+            background-color: #2EBD53;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-sm);
         }
 
         .btn-checkout:disabled {
             background-color: #CCC;
             cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
         /* Overlay */
@@ -610,7 +741,7 @@
             z-index: 999;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s;
+            transition: all var(--transition-normal);
         }
 
         .overlay.active {
@@ -622,46 +753,67 @@
         .footer {
             background-color: var(--dark);
             color: var(--light);
-            padding: 40px 0 20px;
+            padding: var(--space-xl) 0 var(--space-md);
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xl);
+        }
+
+        .footer-col {
+            animation: fadeIn var(--transition-slow);
         }
 
         .footer-logo {
             height: 60px;
-            margin-bottom: 15px;
+            margin-bottom: var(--space-md);
+            transition: transform var(--transition-normal);
+        }
+
+        .footer-logo:hover {
+            transform: scale(1.05);
         }
 
         .footer p {
             color: #BBB;
-            font-size: 14px;
+            font-size: var(--font-size-sm);
+            line-height: 1.6;
         }
 
         .footer-col h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 18px;
-            margin-bottom: 20px;
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-md);
             color: var(--light);
+            position: relative;
+            padding-bottom: var(--space-xs);
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
         }
 
         .footer-hours li,
         .footer-contact li {
-            margin-bottom: 10px;
+            margin-bottom: var(--space-sm);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: var(--space-sm);
             color: #BBB;
-            font-size: 14px;
+            font-size: var(--font-size-sm);
         }
 
         .footer-hours li span {
             color: var(--light);
-            font-weight: 500;
+            font-weight: var(--font-weight-medium);
         }
 
         .footer-contact i {
@@ -672,17 +824,17 @@
 
         .footer-bottom {
             text-align: center;
-            padding-top: 20px;
+            padding-top: var(--space-md);
             border-top: 1px solid #444;
             color: #BBB;
-            font-size: 14px;
+            font-size: var(--font-size-sm);
         }
 
-        /* Responsive */
+        /* ===== RESPONSIVIDADE ===== */
         @media (max-width: 768px) {
-            .header .container {
+            .header-content {
                 flex-direction: column;
-                gap: 15px;
+                gap: var(--space-md);
             }
 
             .header-info {
@@ -692,8 +844,6 @@
             }
 
             .opening-hours {
-                margin-right: 0;
-                margin-bottom: 10px;
                 justify-content: center;
             }
 
@@ -703,14 +853,15 @@
 
             .footer-grid {
                 grid-template-columns: 1fr;
+                gap: var(--space-lg);
             }
 
-            .top-bar .container {
+            .top-bar-content {
                 justify-content: center;
-                gap: 10px;
+                gap: var(--space-sm);
             }
 
-            .top-info {
+            .contact-info {
                 justify-content: center;
             }
 
@@ -729,13 +880,21 @@
                 justify-content: center;
             }
 
-            .section-title, .section-subtitle {
+            .section-header {
                 text-align: center;
             }
 
             .payment-options {
                 flex-direction: column;
-                gap: 8px;
+                gap: var(--space-sm);
+            }
+
+            .cart-footer {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
             }
         }
     </style>
@@ -744,12 +903,16 @@
     <!-- Top Bar -->
     <div class="top-bar">
         <div class="container">
-            <div class="top-info">
-            </div>
-            <div class="social-links">
-                <a href="https://facebook.com" aria-label="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://instagram.com" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://wa.me/5599999999999" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <div class="top-bar-content">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone-alt"></i> (99) 9999-9999</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Rua dos Pasteis, 123</span>
+                </div>
+                <div class="social-links">
+                    <a href="https://facebook.com" aria-label="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com" aria-label="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/5599999999999" aria-label="WhatsApp" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                </div>
             </div>
         </div>
     </div>
@@ -757,247 +920,253 @@
     <!-- Header -->
     <header class="header">
         <div class="container">
-            <div class="logo">
-                <img src="logo-ze.png" alt="Pastelaria do Zé" width="180" height="80" loading="eager">
-            </div>
-            <div class="header-info">
-                <div class="opening-hours">
-                    <i class="fas fa-clock"></i>
-                    <div>
-                        <p><strong id="status"></strong></p>
-                        <p>Seg a Sáb: <strong>17h às 23h</strong></p>
-                    </div>
+            <div class="header-content">
+                <div class="logo">
+                    <img src="logo-ze.png" alt="Pastelaria do Zé" width="180" height="80" loading="eager">
                 </div>
-                <p id="aviso-fechado" class="hidden">Pedidos online só podem ser feitos durante o horário de funcionamento.</p>
-            </div>
-            <div class="cart-icon" id="cart-toggle">
-                <i class="fas fa-shopping-basket"></i>
-                <span class="cart-count" id="cart-counter">0</span>
+                <div class="header-info">
+                    <div class="opening-hours">
+                        <i class="fas fa-clock"></i>
+                        <div class="opening-hours-text">
+                            <p><strong id="status"></strong></p>
+                            <p>Seg a Sáb: <strong>17h às 23h</strong></p>
+                        </div>
+                    </div>
+                    <p id="aviso-fechado" class="hidden">Pedidos online só podem ser feitos durante o horário de funcionamento.</p>
+                </div>
+                <div class="cart-icon" id="cart-toggle">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span class="cart-count" id="cart-counter">0</span>
+                </div>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="container">
-        <!-- Filtro de Categorias -->
-        <div class="category-filter">
-            <button class="category-btn active" data-category="todos">Todos</button>
-            <button class="category-btn" data-category="pasteis">Pasteis</button>
-            <button class="category-btn" data-category="bebidas">Bebidas</button>
-        </div>
-
-        <section class="menu-section">
-            <h2 class="section-title">Cardápio Completo</h2>
-            <p class="section-subtitle">Escolha seus favoritos</p>
-
-            <div class="menu-grid">
-                <!-- Pastel de Carne -->
-                <div class="menu-item" data-category="pasteis">
-                    <div class="item-image">
-                        <img src="assets/imagens/icons/Pastel de Carne.webp" alt="Pastel de Carne" loading="lazy">
-                        <span class="item-badge">Mais pedido</span>
-                    </div>
-                    <div class="item-info">
-                        <h3>Pastel de Carne</h3>
-                        <p class="item-description">Carne moída temperada com cebola, alho e especiarias</p>
-                        <div class="item-footer">
-                            <span class="item-price">R$ 6,00</span>
-                            <button class="btn-add-cart" data-id="1" data-name="Pastel de Carne" data-price="6.00">
-                                <i class="fas fa-plus"></i> Adicionar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pastel de Queijo -->
-                <div class="menu-item" data-category="pasteis">
-                    <div class="item-image">
-                        <img src="assets/imagens/icons/pastel-de-queijo.jpg" alt="Pastel de Queijo" loading="lazy">
-                    </div>
-                    <div class="item-info">
-                        <h3>Pastel de Queijo</h3>
-                        <p class="item-description">Queijo mussarela derretido com massa crocante</p>
-                        <div class="item-footer">
-                            <span class="item-price">R$ 6,00</span>
-                            <button class="btn-add-cart" data-id="2" data-name="Pastel de Queijo" data-price="6.00">
-                                <i class="fas fa-plus"></i> Adicionar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pastel Frango Catupiry -->
-                <div class="menu-item" data-category="pasteis">
-                    <div class="item-image">
-                        <img src="assets/imagens/icons/Pastel de frango.jpg" alt="Pastel de Frango com Catupiry" loading="lazy">
-                    </div>
-                    <div class="item-info">
-                        <h3>Frango c/ Catupiry</h3>
-                        <p class="item-description">Frango desfiado com catupiry cremoso</p>
-                        <div class="item-footer">
-                            <span class="item-price">R$ 7,00</span>
-                            <button class="btn-add-cart" data-id="3" data-name="Pastel de Frango c/ Catupiry" data-price="7.00">
-                                <i class="fas fa-plus"></i> Adicionar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pastel de Pizza -->
-                <div class="menu-item" data-category="pasteis">
-                    <div class="item-image">
-                        <img src="assets/imagens/icons/Pastel-de-pizza.jpg" alt="Pastel de Pizza" loading="lazy">
-                    </div>
-                    <div class="item-info">
-                        <h3>Pastel de Pizza</h3>
-                        <p class="item-description">Mussarela, tomate e orégano</p>
-                        <div class="item-footer">
-                            <span class="item-price">R$ 6,50</span>
-                            <button class="btn-add-cart" data-id="4" data-name="Pastel de Pizza" data-price="6.50">
-                                <i class="fas fa-plus"></i> Adicionar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pastel de Calabresa -->
-                <div class="menu-item" data-category="pasteis">
-                    <div class="item-image">
-                        <img src="assets/imagens/icons/calabresa.jpg" alt="Pastel de Calabresa" loading="lazy">
-                    </div>
-                    <div class="item-info">
-                        <h3>Pastel de Calabresa</h3>
-                        <p class="item-description">Calabresa fatiada com cebola</p>
-                        <div class="item-footer">
-                            <span class="item-price">R$ 6,50</span>
-                            <button class="btn-add-cart" data-id="5" data-name="Pastel de Calabresa" data-price="6.50">
-                                <i class="fas fa-plus"></i> Adicionar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pastel de Palmito -->
-                <div class="menu-item" data-category="pasteis">
-                    <div class="item-image">
-                        <img src="assets/imagens/icons/Pastel-de-Palmito-Cremoso.jpg" alt="Pastel de Palmito" loading="lazy">
-                    </div>
-                    <div class="item-info">
-                        <h3>Pastel de Palmito</h3>
-                        <p class="item-description">Palmito pupunha com queijo</p>
-                        <div class="item-footer">
-                            <span class="item-price">R$ 7,00</span>
-                            <button class="btn-add-cart" data-id="6" data-name="Pastel de Palmito" data-price="7.00">
-                                <i class="fas fa-plus"></i> Adicionar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bebidas (só aparecem na categoria bebidas) -->
-                <!-- Refrigerante Lata -->
-                <div class="menu-item" data-category="bebidas" style="display: none;">
-                    <div class="item-image">
-                        <img src="assets/imagens/icons/Refrigerante-COCA-COLA-Lata-350ml.webp" alt="Refrigerante em Lata" loading="lazy">
-                    </div>
-                    <div class="item-info">
-                        <h3>Refrigerante Lata</h3>
-                        <p class="item-description">Coca-Cola, Guaraná, Fanta ou Sprite</p>
-                        <div class="item-footer">
-                            <span class="item-price">R$ 5,00</span>
-                            <button class="btn-add-cart" data-id="7" data-name="Refrigerante Lata" data-price="5.00">
-                                <i class="fas fa-plus"></i> Adicionar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Refrigerante 600ml -->
-                <div class="menu-item" data-category="bebidas" style="display: none;">
-                    <div class="item-image">
-                        <img src="assets/imagens/icons/refri 600.webp" alt="Refrigerante 600ml" loading="lazy">
-                    </div>
-                    <div class="item-info">
-                        <h3>Refrigerante 600ml</h3>
-                        <p class="item-description">Coca-Cola, Guaraná ou Fanta</p>
-                        <div class="item-footer">
-                            <span class="item-price">R$ 8,00</span>
-                            <button class="btn-add-cart" data-id="8" data-name="Refrigerante 600ml" data-price="8.00">
-                                <i class="fas fa-plus"></i> Adicionar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Suco Natural -->
-                <div class="menu-item" data-category="bebidas" style="display: none;">
-                    <div class="item-image">
-                        <img src="assets/imagens/icons/garrafa-de-suco-laranja.avif" alt="Suco Natural" loading="lazy">
-                    </div>
-                    <div class="item-info">
-                        <h3>Suco Natural 500ml</h3>
-                        <p class="item-description">Laranja, Abacaxi, Maracujá ou Limão</p>
-                        <div class="item-footer">
-                            <span class="item-price">R$ 7,00</span>
-                            <button class="btn-add-cart" data-id="9" data-name="Suco Natural 500ml" data-price="7.00">
-                                <i class="fas fa-plus"></i> Adicionar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Água Mineral -->
-                <div class="menu-item" data-category="bebidas" style="display: none;">
-                    <div class="item-image">
-                        <img src="agua-mineral.jpg" alt="Água Mineral" loading="lazy">
-                    </div>
-                    <div class="item-info">
-                        <h3>Água Mineral 500ml</h3>
-                        <p class="item-description">Com ou sem gás</p>
-                        <div class="item-footer">
-                            <span class="item-price">R$ 3,00</span>
-                            <button class="btn-add-cart" data-id="10" data-name="Água Mineral 500ml" data-price="3.00">
-                                <i class="fas fa-plus"></i> Adicionar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cerveja Lata -->
-                <div class="menu-item" data-category="bebidas" style="display: none;">
-                    <div class="item-image">
-                        <img src="cerveja-lata.jpg" alt="Cerveja em Lata" loading="lazy">
-                    </div>
-                    <div class="item-info">
-                        <h3>Cerveja Lata 350ml</h3>
-                        <p class="item-description">Skol, Brahma ou Heineken</p>
-                        <div class="item-footer">
-                            <span class="item-price">R$ 6,00</span>
-                            <button class="btn-add-cart" data-id="11" data-name="Cerveja Lata 350ml" data-price="6.00">
-                                <i class="fas fa-plus"></i> Adicionar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Água de Coco -->
-                <div class="menu-item" data-category="bebidas" style="display: none;">
-                    <div class="item-image">
-                        <img src="agua-coco.jpg" alt="Água de Coco" loading="lazy">
-                    </div>
-                    <div class="item-info">
-                        <h3>Água de Coco 300ml</h3>
-                        <p class="item-description">Natural ou industrializada</p>
-                        <div class="item-footer">
-                            <span class="item-price">R$ 5,00</span>
-                            <button class="btn-add-cart" data-id="12" data-name="Água de Coco 300ml" data-price="5.00">
-                                <i class="fas fa-plus"></i> Adicionar
-                            </button>
-                        </div>
-                    </div>
-                </div>
+    <main class="main-content">
+        <div class="container">
+            <!-- Filtro de Categorias -->
+            <div class="category-filter">
+                <button class="category-btn active" data-category="todos">Todos</button>
+                <button class="category-btn" data-category="pasteis">Pasteis</button>
+                <button class="category-btn" data-category="bebidas">Bebidas</button>
             </div>
-        </section>
+
+            <section class="menu-section">
+                <div class="section-header">
+                    <h2 class="section-title">Cardápio Completo</h2>
+                    <p class="section-subtitle">Escolha seus favoritos</p>
+                </div>
+
+                <div class="menu-grid">
+                    <!-- Pastel de Carne -->
+                    <div class="menu-item" data-category="pasteis">
+                        <div class="item-image">
+                            <img src="assets/imagens/icons/Pastel de Carne.webp" alt="Pastel de Carne" loading="lazy">
+                            <span class="item-badge">Mais pedido</span>
+                        </div>
+                        <div class="item-info">
+                            <h3>Pastel de Carne</h3>
+                            <p class="item-description">Carne moída temperada com cebola, alho e especiarias</p>
+                            <div class="item-footer">
+                                <span class="item-price">R$ 6,00</span>
+                                <button class="btn-add-cart" data-id="1" data-name="Pastel de Carne" data-price="6.00">
+                                    <i class="fas fa-plus"></i> Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pastel de Queijo -->
+                    <div class="menu-item" data-category="pasteis">
+                        <div class="item-image">
+                            <img src="assets/imagens/icons/pastel-de-queijo.jpg" alt="Pastel de Queijo" loading="lazy">
+                        </div>
+                        <div class="item-info">
+                            <h3>Pastel de Queijo</h3>
+                            <p class="item-description">Queijo mussarela derretido com massa crocante</p>
+                            <div class="item-footer">
+                                <span class="item-price">R$ 6,00</span>
+                                <button class="btn-add-cart" data-id="2" data-name="Pastel de Queijo" data-price="6.00">
+                                    <i class="fas fa-plus"></i> Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pastel Frango Catupiry -->
+                    <div class="menu-item" data-category="pasteis">
+                        <div class="item-image">
+                            <img src="assets/imagens/icons/Pastel de frango.jpg" alt="Pastel de Frango com Catupiry" loading="lazy">
+                        </div>
+                        <div class="item-info">
+                            <h3>Frango c/ Catupiry</h3>
+                            <p class="item-description">Frango desfiado com catupiry cremoso</p>
+                            <div class="item-footer">
+                                <span class="item-price">R$ 7,00</span>
+                                <button class="btn-add-cart" data-id="3" data-name="Pastel de Frango c/ Catupiry" data-price="7.00">
+                                    <i class="fas fa-plus"></i> Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pastel de Pizza -->
+                    <div class="menu-item" data-category="pasteis">
+                        <div class="item-image">
+                            <img src="assets/imagens/icons/Pastel-de-pizza.jpg" alt="Pastel de Pizza" loading="lazy">
+                        </div>
+                        <div class="item-info">
+                            <h3>Pastel de Pizza</h3>
+                            <p class="item-description">Mussarela, tomate e orégano</p>
+                            <div class="item-footer">
+                                <span class="item-price">R$ 6,50</span>
+                                <button class="btn-add-cart" data-id="4" data-name="Pastel de Pizza" data-price="6.50">
+                                    <i class="fas fa-plus"></i> Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pastel de Calabresa -->
+                    <div class="menu-item" data-category="pasteis">
+                        <div class="item-image">
+                            <img src="assets/imagens/icons/calabresa.jpg" alt="Pastel de Calabresa" loading="lazy">
+                        </div>
+                        <div class="item-info">
+                            <h3>Pastel de Calabresa</h3>
+                            <p class="item-description">Calabresa fatiada com cebola</p>
+                            <div class="item-footer">
+                                <span class="item-price">R$ 6,50</span>
+                                <button class="btn-add-cart" data-id="5" data-name="Pastel de Calabresa" data-price="6.50">
+                                    <i class="fas fa-plus"></i> Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pastel de Palmito -->
+                    <div class="menu-item" data-category="pasteis">
+                        <div class="item-image">
+                            <img src="assets/imagens/icons/Pastel-de-Palmito-Cremoso.jpg" alt="Pastel de Palmito" loading="lazy">
+                        </div>
+                        <div class="item-info">
+                            <h3>Pastel de Palmito</h3>
+                            <p class="item-description">Palmito pupunha com queijo</p>
+                            <div class="item-footer">
+                                <span class="item-price">R$ 7,00</span>
+                                <button class="btn-add-cart" data-id="6" data-name="Pastel de Palmito" data-price="7.00">
+                                    <i class="fas fa-plus"></i> Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bebidas (só aparecem na categoria bebidas) -->
+                    <!-- Refrigerante Lata -->
+                    <div class="menu-item" data-category="bebidas" style="display: none;">
+                        <div class="item-image">
+                            <img src="assets/imagens/icons/Refrigerante-COCA-COLA-Lata-350ml.webp" alt="Refrigerante em Lata" loading="lazy">
+                        </div>
+                        <div class="item-info">
+                            <h3>Refrigerante Lata</h3>
+                            <p class="item-description">Coca-Cola, Guaraná, Fanta ou Sprite</p>
+                            <div class="item-footer">
+                                <span class="item-price">R$ 5,00</span>
+                                <button class="btn-add-cart" data-id="7" data-name="Refrigerante Lata" data-price="5.00">
+                                    <i class="fas fa-plus"></i> Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Refrigerante 600ml -->
+                    <div class="menu-item" data-category="bebidas" style="display: none;">
+                        <div class="item-image">
+                            <img src="assets/imagens/icons/refri 600.webp" alt="Refrigerante 600ml" loading="lazy">
+                        </div>
+                        <div class="item-info">
+                            <h3>Refrigerante 600ml</h3>
+                            <p class="item-description">Coca-Cola, Guaraná ou Fanta</p>
+                            <div class="item-footer">
+                                <span class="item-price">R$ 8,00</span>
+                                <button class="btn-add-cart" data-id="8" data-name="Refrigerante 600ml" data-price="8.00">
+                                    <i class="fas fa-plus"></i> Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Suco Natural -->
+                    <div class="menu-item" data-category="bebidas" style="display: none;">
+                        <div class="item-image">
+                            <img src="assets/imagens/icons/garrafa-de-suco-laranja.avif" alt="Suco Natural" loading="lazy">
+                        </div>
+                        <div class="item-info">
+                            <h3>Suco Natural 500ml</h3>
+                            <p class="item-description">Laranja, Abacaxi, Maracujá ou Limão</p>
+                            <div class="item-footer">
+                                <span class="item-price">R$ 7,00</span>
+                                <button class="btn-add-cart" data-id="9" data-name="Suco Natural 500ml" data-price="7.00">
+                                    <i class="fas fa-plus"></i> Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Água Mineral -->
+                    <div class="menu-item" data-category="bebidas" style="display: none;">
+                        <div class="item-image">
+                            <img src="agua-mineral.jpg" alt="Água Mineral" loading="lazy">
+                        </div>
+                        <div class="item-info">
+                            <h3>Água Mineral 500ml</h3>
+                            <p class="item-description">Com ou sem gás</p>
+                            <div class="item-footer">
+                                <span class="item-price">R$ 3,00</span>
+                                <button class="btn-add-cart" data-id="10" data-name="Água Mineral 500ml" data-price="3.00">
+                                    <i class="fas fa-plus"></i> Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cerveja Lata -->
+                    <div class="menu-item" data-category="bebidas" style="display: none;">
+                        <div class="item-image">
+                            <img src="cerveja-lata.jpg" alt="Cerveja em Lata" loading="lazy">
+                        </div>
+                        <div class="item-info">
+                            <h3>Cerveja Lata 350ml</h3>
+                            <p class="item-description">Skol, Brahma ou Heineken</p>
+                            <div class="item-footer">
+                                <span class="item-price">R$ 6,00</span>
+                                <button class="btn-add-cart" data-id="11" data-name="Cerveja Lata 350ml" data-price="6.00">
+                                    <i class="fas fa-plus"></i> Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Água de Coco -->
+                    <div class="menu-item" data-category="bebidas" style="display: none;">
+                        <div class="item-image">
+                            <img src="agua-coco.jpg" alt="Água de Coco" loading="lazy">
+                        </div>
+                        <div class="item-info">
+                            <h3>Água de Coco 300ml</h3>
+                            <p class="item-description">Natural ou industrializada</p>
+                            <div class="item-footer">
+                                <span class="item-price">R$ 5,00</span>
+                                <button class="btn-add-cart" data-id="12" data-name="Água de Coco 300ml" data-price="5.00">
+                                    <i class="fas fa-plus"></i> Adicionar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
     <!-- Cart Modal -->
@@ -1398,7 +1567,7 @@
                 
                 this.state.isOpen = isOpen;
                 this.elements.statusElement.textContent = isOpen ? 'ABERTO AGORA' : 'FECHADO';
-                this.elements.statusElement.style.color = isOpen ? 'var(--success)' : 'var(--danger)';
+                this.elements.statusElement.className = isOpen ? '' : 'fechado';
                 this.elements.avisoFechado.classList.toggle('hidden', isOpen);
                 
                 // Atualizar estado dos elementos
